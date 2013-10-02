@@ -17,7 +17,7 @@ get '/geocode' do
     json = $geocache[query_key]
   else
     response = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json", query: {language: "pt-BR", sensor: "false", region: 'BR'}.merge!(query))
-    $geocache[query_key] = json = JSON.load(response.body)
+    $geocache[query_key] = json = response.body
   end
 
   json
